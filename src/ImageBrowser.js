@@ -103,10 +103,10 @@ export default class ImageBrowser extends React.Component {
     return {length, offset: length * index, index};
   }
 
-  prepareCallback() {
+  prepareCallback = async () => {
     const { selected, photos } = this.state;
     const selectedPhotos = selected.map(i => photos[i]);
-    const assetsInfo = Promise.all(selectedPhotos.map(i => MediaLibrary.getAssetInfoAsync(i)));
+    const assetsInfo = await Promise.all(selectedPhotos.map(i => MediaLibrary.getAssetInfoAsync(i)));
     this.props.callback(assetsInfo);
   }
 
